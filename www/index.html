@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="msapplication-tap-highlight" content="no" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+	<!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<!--<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" 
+	/>-->
+
+	<link rel="stylesheet" type="text/css" href="assets/slick/slick.css">
+	<link rel="stylesheet" type="text/css" href="assets/slick/slick-theme.css">
+
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="js/jquery.ajax-cross-origin.min.js"></script>
+	<script src="js/jsmobile/jquery.mobile-1.4.5.min.js"></script>
+	<script src="assets/bootstrap/boostrap.js"></script>
+	<title>GADM</title>
+</head>
+
+<body>
+	<!--  pop ups !-->
+	<!--  crear proyecto !-->
+	<div class="modal fade" id="createProject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Crear nuevo proyecto</h4>
+				</div>
+
+				<div class="modal-body">
+					<label for="title">Nombre</label>
+					<input id="title" type="text" class="form-control" placeholder="ingrese su titulo">
+
+					<label for="content">Breve descripción</label>
+					<textarea id="content" type="text" class="form-control" placeholder="ingrese su titulo">
+					</textarea>
+
+				</div>
+
+				<div class="modal-footer">
+					<button data-dismiss="modal" id="confirm-create-clientproject" class="btn btn-primary" >Crear nuevo proyecto</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!--  crear Fase !-->
+	<div class="modal fade" id="createPhase" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Crear nueva fase</h4>
+				</div>
+
+				<div class="modal-body">
+					<label for="title">Nombre</label>
+					<input id="phasetitle" type="text" class="form-control" placeholder="ingrese su titulo">
+
+					<label for="content">Breve descripción</label>
+					<textarea id="phasedesc" type="text" class="form-control" placeholder="ingrese su titulo">
+					</textarea>
+
+				</div>
+
+				<div class="modal-footer">
+					<button data-dismiss="modal" id="confirm-create-clientproject" class="btn btn-primary new-phase" >Crear nueva fase de proyecto</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	
+	<!--  crear tarjeta de tareas !-->
+	<div class="modal fade" id="create-task" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Añadir tarea</h4>
+				</div>
+				<div class="modal-body">
+
+					<label for="task-title">Titulo</label>
+					<input id="task-title" type="text" class="form-control" placeholder="ingrese su titulo">
+
+					<label for="task-content">Descripción de su tarea</label>
+					<input id="task-content" type="text" class="form-control" placeholder="Ej: realizar diseño de portada">
+
+					<input type="hidden" name="_token" value="1" id="task-status">
+
+				</div>
+				<div class="modal-footer">
+					<button data-dismiss="modal" id="confirm-create-task" class="btn btn-primary" >Crear nueva tarea</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	
+
+	<!--  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ !-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<input type="hidden" id="token" value="8ueqpdGI7zJtQnSkV5wMi2xkcpThZV7odwIp8zZB" name="">
+	<div data-role="page" id="login">
+		<div data-role="header" class="none">
+
+
+		</div>
+
+		<h2 class="login-header">Bienvenido, inicia sesón para continuar</h2>
+
+
+		<div data-role="content">	
+			<div id="particles-js"></div>
+
+			<div class="buttonsLoginContainer">
+				<div class="containerforButtons">
+					<label>Email</label>
+					<input type="Email" name=""  class="mail" required="" placeholder="Ej: minombre@gmail.com">
+					<label>Password</label>
+					<input type="Password" name="" class="pw"  required="" placeholder="Su contraseña">
+
+					<input type="submit" id="loguser" value="ingresar" name="">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="buttonsContainer">
+		<div class="infobox"><a class="infobox-btn" id="toProjects" href="#home"  dat><img src="img/icons-02.svg" alt=""/><span class="label">Organizador</span></a></div>
+
+		<div class="infobox" ><a class="infobox-btn" id="blogButton" href="#"  dat> <img src="img/icons-04.svg" alt=""/><span class="label">Noticias</span></a></div>
+
+		<div class="infobox" ><a class="infobox-btn" id="resourcesButton" href="#"  dat> <img src="img/icons-04.svg" alt=""/><span class="label">Recursos</span></a></div>
+		
+		<div class="infobox" ><a class="infobox-btn" id="blogButton" href="#user"  dat> <img src="img/user.svg" alt=""/><span class="label">Usuario</span></a></div>
+
+	</div>
+
+
+	<div data-role="page" id="inicio">
+		<div data-role="header" class="none">
+
+
+		</div>
+
+		
+		<h2 id="saludo">Bienvenido</h2>
+
+
+		<div data-role="content">	
+			
+		</div>
+	</div>
+
+	<div data-role="page" id="user" class="page">
+		<div data-role="header" class="none">
+			<a href="#inicio" class="backbutton-wp"><img src="img/back-02.svg" alt=""></a>
+			<h1 id="titulo">Usuario</h1>
+
+		</div>
+		
+
+
+
+		<div data-role="main">	
+			<a id="logout" href="#">Logout</a>
+		</div>
+
+	</div>
+
+
+<!--Tutorialessss -->
+	<div class="tutorialProjects">
+		
+	</div>
+
+	<div data-role="page" id="home" class="page">
+		
+
+
+		<div data-role="header" class="none">
+			<a href="#inicio" class="backbutton-wp"><img src="img/back-02.svg" alt=""></a>
+			<h1 id="titulo">Organizador de proyectos</h1>
+
+		</div>
+
+		<div data-role="main">	
+
+			<h3 class="sectionTitle"> Proyectos en desarrollo:</h3>
+			<div id="proyectos">
+
+
+			</div>
+			<div class="create-new-container">
+				<a class="create-new addbutton" data-toggle="modal" data-target="#createProject" href="#">+</a>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="loading">
+		<span class="load">Cargando</span>
+	</div>
+
+	<div data-role="page" id="projectDetail" class="page">
+		<div data-role="header" class="none">
+		<a href="#home" class="backbutton-wp"><img src="img/back-02.svg" alt=""></a>
+			<h1 id="tituloProject"></h1>
+		</div>
+		
+		<div class="header-tasks-container ">
+
+			<div class="task-bar">
+				<h2>
+					<input data-type="title" data-url="clientproject/grouptask/quickmodify" data-id="1" title="Editar titulo del proyecto" class="inputOff" type="text" id="phaseName" data-element-type="phase" value="Tareas2">
+				</h2>
+				
+				<div class="textare-container">	
+					<textarea data-type="description" data-url="clientproject/grouptask/quickmodify" data-id="1" title="Editar descripción del proyecto" class="inputOff" type="text" id="projectName" data-element-type="phase" value="Tareas asignadas a este proyecto"></textarea>
+
+				</div>
+
+				<span class=" span-button show-phases">
+					<img src="img/view-phase-02.svg" alt="">
+				</span>
+
+			</div>	
+
+
+
+		</div>
+		<div class="grouptasks-container">
+
+			<h2>Fases de su proyecto</h2>
+
+			<span class=" span-button close-phases">
+				c
+
+			</span>
+
+
+			<a id="new-phase" data-toggle="modal" data-target="#createPhase" href="#" class="new-group-task addbutton">+</a>
+
+			<div class="append-phases">	</div>
+		</div>
+
+
+		<div id="columnsBg" data-role="main">	
+
+			<input type="hidden" id="act-project-id">	
+			<div style="display: none" id="Fases">
+				<div class="addPhaseDialog">
+					<span class="close-modal">x</span>
+					<input id="phasetitle" type="text" placeholder="Nombre de fase">
+					<input id="phasedesc" type="text" placeholder="Breve descripción">
+					<button class="add-btn add-phase">Crear</button>
+				</div>
+				<h2>Fases de este proyecto</h2>
+				<div class="fases-list">
+
+				</div>
+				<div class="add-new-phase">
+					<span>Nueva fase</span>
+				</div>
+				
+
+			</div>
+
+
+
+			<a id="new-task" data-toggle="modal" data-target="#create-task" href="#" class="addcard todo addbutton">+</a>
+
+			<input type="hidden" class="activePhase" id="phaseId"/>
+			<div class="columns-container">
+				<div class="tasker-container">
+					<div class="task-title">TODO</div>
+					<div data-tasks-status="1" id="todo-column" class="task-column"></div>
+				</div>
+
+				<div class="tasker-container">
+					<div  class="task-title">IN PROGRESS</div>
+					<div data-tasks-status="2" id="inprogress-column" class="task-column">
+					</div>
+				</div>
+
+
+
+				<div class="tasker-container">
+					<div class="task-title">DONE</div>
+					<div data-tasks-status="3" id="done-column" class="task-column"></div>	
+				</div>
+
+			</div>
+		</div>
+
+
+
+
+
+
+	</div>
+
+	<div data-role="page" id="card" class="page">
+		<input type="hidden" id="thisTaskId">
+		
+
+
+
+		<div data-role="main">	
+			<h1 id="titleCardPage"></h1>
+			<h3 id="descriptionCardPage"></h3>
+
+			<h4 class="commentsTitle">Comentarios</h4>
+			<div id="cardComments">
+
+
+			</div>
+			<div id="addComentToCard">
+				<input type="text" id="newComment" placeholder="Ingrese su comentario">
+				<button id="sendComment">Enviar</button>
+			</div>
+		</div>
+
+	</div>
+	<div data-role="page" id="blog" class="page">
+
+		<div data-role="header" class="none">
+			<a href="#inicio" class="backbutton-wp"><img src="img/back-02.svg" alt=""></a>
+			<h1>Media Blog</h1>
+
+		</div>
+
+		<div data-role="main">	
+			<div id="postsContainer">
+
+
+			</div>
+		</div>
+
+	</div>
+
+	<div data-role="page" id="notice" class="page">
+
+		<div data-role="header" class="none">
+			<a href="#blog" class="backbutton-wp"><img src="img/back-02.svg" alt=""></a>
+			<h1>Media Blog</h1>
+
+		</div>
+
+		<div data-role="main">	
+			<div id="noticeContent">
+
+
+			</div>
+			<div class="share-notice">
+
+			</div>
+		</div>
+
+	</div>
+
+	<div data-role="page" id="recursos" class="page">
+
+		<div data-role="header" class="none">
+			<a href="#inicio" class="backbutton-wp"><img src="img/back-02.svg" alt=""></a>
+			<h1>Recursos y tutoriales</h1>
+
+		</div>
+
+		<div data-role="main">	
+			<div id="resourcesContainer">
+
+
+			</div>
+		</div>
+
+	</div>
+
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="js/draganddrop.js"></script>
+	<script src="assets/slick/slick.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/particles/particle.js"></script>
+	<script src="js/ajax-calls.js"></script>
+	<script src="js/functions.js"  ></script>
+	<script type="text/javascript">
+		app.initialize();
+	</script>
+</body>
+
+</html>
+
