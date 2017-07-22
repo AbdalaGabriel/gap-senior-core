@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="358px"
+	 height="308px" viewBox="0 0 358 308" enable-background="new 0 0 358 308" xml:space="preserve">
+<g id="Capa_1">
+	<g>
+		<defs>
+			<rect id="SVGID_1_" x="-884.183" y="-246" width="372" height="651"/>
+		</defs>
+		<clipPath id="SVGID_2_">
+			<use xlink:href="#SVGID_1_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_2_)">
+			
+				<image overflow="visible" width="1920" height="1080" xlink:href="C8465EC8.jpg"  transform="matrix(1 0 0 1 -959.1831 -407.1099)">
+			</image>
+		</g>
+	</g>
+</g>
+<g id="Capa_2">
+	<rect x="41" y="10" fill="#FFFFFF" width="276" height="291"/>
+	<rect x="41" y="10" fill="#1F1F1F" width="276" height="41"/>
+	<text transform="matrix(1 0 0 1 79.4331 36.0015)" fill="#FFFFFF" font-family="'Raleway'" font-size="16">Organizador de proyectos</text>
+	<text transform="matrix(1 0 0 1 83.0327 99.0015)" fill="#1F1F1F" font-family="'Raleway-SemiBold'" font-size="16">Proyectos en desarrolllo</text>
+	<line opacity="0.2" fill="none" stroke="#101010" stroke-miterlimit="10" x1="78.5" y1="110" x2="279.5" y2="110"/>
+	<text transform="matrix(1 0 0 1 102.0415 160.0015)" fill="#E82A4A" font-family="'Raleway'" font-size="16">Diseño de identidad</text>
+	<text transform="matrix(1 0 0 1 114.6885 209.0015)" fill="#E82A4A" font-family="'Raleway'" font-size="16">Nuevo Sitio Web</text>
+	<circle fill="#B50744" cx="279.5" cy="257.147" r="22.333"/>
+	<g>
+		<path fill="#FFFFFF" d="M285.896,256v2.296h-5.125v5.535h-2.542v-5.535h-5.125V256h5.125v-5.534h2.542V256H285.896z"/>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_3_" x="-548.183" y="-420" width="352" height="342"/>
+		</defs>
+		<clipPath id="SVGID_4_">
+			<use xlink:href="#SVGID_3_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_4_)">
+			
+				<image overflow="visible" width="1920" height="1080" xlink:href="C8465EC9.jpg"  transform="matrix(1 0 0 1 -637.1831 -594.1099)">
+			</image>
+		</g>
+	</g>
+</g>
+</svg>

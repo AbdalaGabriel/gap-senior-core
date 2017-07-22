@@ -241,10 +241,10 @@ div[data-role="header"] h1{
 }
 
 
-.tutorialProjects{
+.tutorialProjects-container{
     width: 100vw;
     height: 100vh;
-    background: #631251;
+        background: #e82954;
     z-index: 100;
     position: absolute;
     display: none
@@ -1099,4 +1099,23 @@ button.close{
 .post-content  p {
   text-shadow: none;
   margin: 1.5em 0 !important;
+}
+
+.tutorial-container{
+     text-align: center;
+    color: white;
+    padding: 3em 0 0 0;
+}
+
+.buttons-tutorial-container{
+    text-align: center;
+    margin: 3em 0 0 0;
+}
+
+.buttonTutorial{
+      background: white;
+    padding: .5em 1em;
+    margin: .5em;
+    border-radius: .2em;
+
 }

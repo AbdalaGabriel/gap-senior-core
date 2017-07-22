@@ -117,6 +117,19 @@ function init()
             //console.log(thisIndex);
             $('.columns-container').slick('slickGoTo', thisIndex);
         });
+
+
+        $(".tutorialProjects").slick({
+            dots: true,
+            infinite: true,
+            centerMode: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            draggable:false,
+
+        });
+
+        
 }
 
 // UI functions
@@ -282,7 +295,23 @@ function pageInicio()
         //Muestro tutorial si es la primerza vez que entra,
         if(seenTutorial == "no"){
             console.log("muestro tutorial");
-            //$(".tutorialProjects").css("display","block");
+            $(".tutorialProjects-container").css("display","block");
+
+            $(".tut-next").click(function()
+            {
+                $(".tutorialProjects").slick('slickNext');
+            });
+
+            $(".tut-end").click(function()
+            {
+               $(".tutorialProjects-container").css("display","none");
+               localStorage.setItem("seen-tutorial", "yes");
+               seenTutorial = localStorage.getItem("seen-tutorial");
+            });
+
+
+
+
         }
     });
 

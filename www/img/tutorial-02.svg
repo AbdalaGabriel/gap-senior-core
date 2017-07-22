@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="358px"
+	 height="308px" viewBox="0 0 358 308" enable-background="new 0 0 358 308" xml:space="preserve">
+<g id="Capa_1">
+	<g>
+		<defs>
+			<rect id="SVGID_1_" x="-1257.493" y="-246" width="372" height="651"/>
+		</defs>
+		<clipPath id="SVGID_2_">
+			<use xlink:href="#SVGID_1_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_2_)">
+			
+				<image overflow="visible" width="1920" height="1080" xlink:href="8254B313.jpg"  transform="matrix(1 0 0 1 -1332.4927 -407.1099)">
+			</image>
+		</g>
+	</g>
+</g>
+<g id="Capa_2">
+	<g>
+		<defs>
+			<rect id="SVGID_3_" x="-921.493" y="-420" width="352" height="342"/>
+		</defs>
+		<clipPath id="SVGID_4_">
+			<use xlink:href="#SVGID_3_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_4_)">
+			
+				<image overflow="visible" width="1920" height="1080" xlink:href="8254B311.jpg"  transform="matrix(1 0 0 1 -1010.4927 -594.1099)">
+			</image>
+		</g>
+	</g>
+	<g>
+		<g>
+			<path fill="#FFFFFF" d="M287.418,256v2.296h-5.125v5.535h-2.542v-5.535h-5.125V256h5.125v-5.534h2.542V256H287.418z"/>
+		</g>
+		<rect x="71.339" y="124" fill="#FFFFFF" width="216.078" height="177"/>
+		<rect x="84.673" y="139.333" fill="#DCE5EC" width="189.953" height="73.167"/>
+		<text transform="matrix(1 0 0 1 96.5444 163)" fill="#E82A4A" font-family="'Raleway-SemiBold'" font-size="13">Paleta de colores</text>
+		<g>
+			<text transform="matrix(1 0 0 1 96.5444 183.9995)"><tspan x="0" y="0" fill="#1F1F1F" font-family="'Raleway-Medium'" font-size="13">Presentar propuesta de </tspan><tspan x="0" y="15.6" fill="#1F1F1F" font-family="'Raleway-Medium'" font-size="13">colores</tspan></text>
+		</g>
+		<rect x="84.673" y="226.388" fill="#DCE5EC" width="189.953" height="73.166"/>
+		<text transform="matrix(1 0 0 1 96.5444 250.0547)" fill="#E82A4A" font-family="'Raleway-SemiBold'" font-size="13">Ajustar tipografía</text>
+		<g>
+			<text transform="matrix(1 0 0 1 96.5444 271.0537)"><tspan x="0" y="0" fill="#1F1F1F" font-family="'Raleway-Medium'" font-size="13">Buscar una tipografía con</tspan><tspan x="0" y="15.601" fill="#1F1F1F" font-family="'Raleway-Medium'" font-size="13">remates pronunciados</tspan></text>
+		</g>
+		<text transform="matrix(1 0 0 1 102.3389 92.3154)" fill="#FFFFFF" font-family="'Raleway-Medium'" font-size="21">IN PROGRESS</text>
+		<rect x="300.339" y="124" fill="#FFFFFF" width="10" height="177"/>
+		<rect x="49.18" y="124" fill="#FFFFFF" width="10" height="177"/>
+		<g>
+			<circle fill="#FFA92C" cx="305.169" cy="213.333" r="18.833"/>
+			<polyline fill="none" stroke="#FFFFFF" stroke-width="6" stroke-miterlimit="10" points="300.335,203.211 310.544,213.42 
+				300.509,223.455 			"/>
+		</g>
+		<g>
+			<circle fill="#FFA92C" cx="54.177" cy="213.333" r="18.833"/>
+			<polyline fill="none" stroke="#FFFFFF" stroke-width="6" stroke-miterlimit="10" points="59.011,223.455 48.802,213.247 
+				58.837,203.212 			"/>
+		</g>
+	</g>
+</g>
+</svg>
