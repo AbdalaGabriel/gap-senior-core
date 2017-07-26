@@ -104,11 +104,13 @@ function init()
 
         $(".columns-container").slick({
             dots: true,
-            infinite: true,
+            infinite: false,
             centerMode: true,
             slidesToShow: 1,
             slidesToScroll: 1,
             draggable:false,
+            swipe: false,
+              arrows: true,
 
         });
 
@@ -218,7 +220,7 @@ function loginfunction()
                     localStorage.setItem("id",  userInfo[0].id);
                     localStorage.setItem("email", userInfo[0].email);
                     localStorage.setItem("typeUser", userInfo[0].type);
-                    localStorage.setItem("seen-tutorial", "no");
+                    localStorage.setItem("seen-tutorial", "yes");
         
 
                     // Levanto en variables globales
@@ -339,6 +341,7 @@ function renderProjects(consulta)
         projectPosition++;
     });
 
+    $(".projectContainer").off();
     $(".projectContainer").click(function()
     {
         actualProjectId = $(this).attr("data-project-id");
@@ -378,11 +381,11 @@ $(".create-new").click(function()
 // -----------------------------------------------------------------------
 function renderPhases(clientProjectsData, thisProjectPosition)
 {
-    //console.log("- Render de fases");
-    //console.log(thisProjectPosition);
+    console.log("- Render de fases");
+    console.log(thisProjectPosition);
 
     var thisProject = clientProjectsData[thisProjectPosition];
-
+    console.log(thisProject);
     $("#tituloProject").text(thisProject.title);
     $( ":mobile-pagecontainer" ).pagecontainer( "change", "#projectDetail");
     
@@ -390,11 +393,13 @@ function renderPhases(clientProjectsData, thisProjectPosition)
     var faesContainer = $(".append-phases");
     faesContainer.empty();
 
+    console.log(projectPhases);
     let i = 0;
     $(projectPhases).each(function(key, value)
     {
         faesContainer.append('<div class="phaseContainer" data-phase-position="'+i+'" data-phase-id="'+value.id+'">'+value.title+'</div>');
         i++;
+        console.log("appendphase");
     });
 
     $(".new-phase").off();
@@ -428,6 +433,7 @@ function renderPhases(clientProjectsData, thisProjectPosition)
 
 
     // Click en phase;
+     $(".phaseContainer").off();
     $(".phaseContainer").click(function()
     {
         console.log("- Click on phase");
@@ -448,7 +454,7 @@ function eventsForCards()
     $(".task-container").off();
     $(".task-container").click(function()
     {
-        //console.log("- Click en tarjeta");
+       console.log("- Click en tarjeta");
         
         // Extracion y seteo de variables
         cardId = $(this).attr("data-task-id");
@@ -618,7 +624,7 @@ function cleancolumns()
 
 function updatecards(activephase)
 {
-    //console.log( "- Iniciar la carga de tareas" );
+    console.log( "- Iniciar la carga de tareas" );
  $('.loading').show();
     // Limpieza de listeners y contenedores de elementos.
     cleancolumns();
@@ -635,7 +641,7 @@ function updatecards(activephase)
     count = 0;
     $(".task-column").each(function(key, value)
     {
-        // Fase actual
+        console.log("col");
         phaseId = $("#phaseId").val();
         
         // Datos columna actual
@@ -650,10 +656,10 @@ function updatecards(activephase)
             //console.log("Corresponde a: todos")
                 ////console.log(activephase);
                 ////console.log(activephase["cards"]);
-                ////console.log(activephase["cards"]["todos"]);
+                console.log(activephase["cards"]["todos"]);
                 largoTarjetas = activephase["cards"]["todos"].length;
                 thiscards = activephase["cards"]["todos"];
-                //console.log("y tiene " + largoTarjetas + "tareas")
+                console.log("y tiene " + largoTarjetas + "tareas")
                 break;
                 case "2":
                 //console.log("Corresponde a: in progress")

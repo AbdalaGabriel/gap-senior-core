@@ -5,7 +5,7 @@ function callAJAX(requesturl, ajaxmethod, callbackFunction)
 {
     if(ajaxmethod == "simple")
     {
-        //console.log("- Funcion simple de peticiòn AJAX");
+        console.log("- Funcion simple de peticiòn AJAX");
         var ajax =  $.get(requesturl, function(res)
         {
             //console.log(res);
@@ -39,7 +39,7 @@ function callAJAX(requesturl, ajaxmethod, callbackFunction)
     }
     else if (ajaxmethod == "complete")
     {
-        //console.log("Completo");
+        console.log("Completo");
         $.ajax(
         {
             url: requesturl,

@@ -262,12 +262,12 @@ div[data-role="header"] h1{
 
 
 .projectContainer {
-    display: block;
+       display: block;
     width: 12em;
     height: inherit;
-    text-align: left;
+    text-align: center;
     /* line-height: 2em; */
-    color: #49098a;
+    color: #c10e4c;
     text-shadow: none;
     font-weight: 59;
     /* float: left; */
@@ -1118,4 +1118,43 @@ button.close{
     margin: .5em;
     border-radius: .2em;
 
+}
+
+div[data-role="main"]{
+  margin:42px 0 0 0 !important;
+}
+
+.slick-prev:before, .slick-next:before {
+    font-family: 'slick';
+    font-size: 40px !important;
+    line-height: 1;
+    opacity: .75;
+    color: #101010 !important;
+
+}
+
+.slick-prev, .slick-next {
+
+    width: 40px !important;
+    height: 40px !important;
+        z-index: 1 !important;
+    }
+
+    .slick-next {
+    right: -5px !important;
+}
+
+   .slick-prev {
+    left: -5px !important;
+}
+
+
+.post-content img{
+  max-width: 100% !important;
+  text-align: center;
+}
+
+.post-content iframe{
+    max-width: 100% !important;
+  text-align: center;
 }
