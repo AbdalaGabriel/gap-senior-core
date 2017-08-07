@@ -135,6 +135,57 @@
 		</div>
 	</div>
 
+		<!--  Eliminar task !-->
+	<div class="modal fade" id="hide-task-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Eliminar grupo de tareas</h4>
+				</div>
+
+				<div class="modal-body">
+						<p class="question">¿Esta seguro que ocultar borrar esta tareas?</p>
+
+				</div>
+
+				<div class="modal-footer">
+					<button data-dismiss="modal" id="confirm-hide-task" class="btn btn-primary " >Borrar</button>
+
+					<button data-dismiss="modal" id="" class="btn btn-primary " >Cancelar</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+		<!--  Ocultar task !-->
+	<div class="modal fade" id="delete-task-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Eliminar grupo de tareas</h4>
+				</div>
+
+				<div class="modal-body">
+						<p class="question">¿Esta seguro que desea borrar esta tareas?</p>
+
+				</div>
+
+				<div class="modal-footer">
+					<button data-dismiss="modal" id="confirm-delete-task" class="btn btn-primary " >Borrar</button>
+
+					<button data-dismiss="modal" id="" class="btn btn-primary " >Cancelar</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
 	
 
 	<!--  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ !-->
@@ -387,8 +438,8 @@
 	<div data-role="page" id="card" class="page">
 		<input type="hidden" id="thisTaskId">
 		
-
-
+		<a id="delete-task" data-toggle="modal" data-target="#delete-task-modal" href="#">X</a>
+		<a id="hide-task" data-toggle="modal" data-target="#hide-task-modal" href="#">h</a>
 
 		<div data-role="main">	
 			<h1 id="titleCardPage"></h1>

@@ -338,16 +338,46 @@ div[data-role="header"] h1{
 
 }
 
+#delete-task{
+    float: left;
+    background: #460ec1;
+    color: white !important;
+    padding: 0 16px;
+    margin: 10px;
+    font-size: 32px;
+    line-height: 45px;
+    position: absolute;
+    border-radius: 3em;
+    z-index: 1;
+    top: 1.5em;
+    right: 2.5em;
+}
+
+#hide-task{
+      float: left;
+    background: #c10e4c;
+    color: white !important;
+    padding: 0 16px;
+    margin: 10px;
+    font-size: 32px;
+    line-height: 45px;
+    position: absolute;
+    border-radius: 3em;
+    z-index: 1;
+    top: 1.5em;
+    right: .5em;
+}
+
 #addComentToCard{
-  padding: 1.5em;
-  position: absolute;
-  bottom: 0;
-  width: calc(100% - 3em);
-  background: #3e3e3e;
+       padding: 1.5em;
+    position: absolute;
+    bottom: 4em;
+    width: calc(100% - 3em);
+    background: #dfdde4;
 }
 
 #sendComment {
-  background: #403036;
+  background: #ad0946;
   text-shadow: none;
   color: white;
   border: none;

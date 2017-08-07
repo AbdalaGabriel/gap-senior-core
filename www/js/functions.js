@@ -1,5 +1,5 @@
-baseurl = "http://gabrielabdala.com/";
-//baseurl = "http://localhost:8000/";
+//baseurl = "http://gabrielabdala.com/";
+ baseurl = "http://localhost:8000/";
 var userID = "";
 var userID = "";
 var userName = "";
@@ -18,7 +18,8 @@ var actualProjectId = 0;
 var consultedDataProject = false;
 var token = $("#token").val();
 var phasesOpen = false;
-
+var activePhaseId = 0;
+var activeCard = 0;
 //test2@test.com
 //baseurl = "http://gabdala.ferozo.com/clean/public/";
 
@@ -198,8 +199,12 @@ function loginfunction()
     {
         console.log("- Click enviar login");
         valorEmail = email.val();
+        //valorEmail = 'gabrielabdala.dm@gmail.com';
         valorPass = pass.val();
         loginroute = baseurl + "app/userlogin/" + valorEmail;
+        //loginroute = baseurl + "app/testcors";
+
+       
 
         // Validaciones de login
         if(valorEmail == "" )
@@ -218,11 +223,13 @@ function loginfunction()
                 crossOrigin: true,
                 url: loginroute,
                 type: 'GET',
-                dataType: 'json',
+                dataType: 'json',//tipo de datos
+
+
 
                 success: function(data)
                 {
-                    let userInfo = JSON.parse(data);
+                    let userInfo = data;
                     console.log(userInfo);
                     console.log("- Se logueo usuario");
                     console.log(userInfo[0].name);
@@ -356,10 +363,11 @@ function renderProjects(consulta)
     $(".projectContainer").click(function()
     {
         actualProjectId = $(this).attr("data-project-id");
-        $('.columns-container').slick('slickGoTo', 3);
+        $('.columns-container').slick('slickGoTo', 0);
         thisProjectPosition = $(this).attr("data-position")
         //console.log("- Posicion extraida: "+ thisProjectPosition);
         renderPhases(clientProjectsData, thisProjectPosition);
+        console.log(actualProjectId);
     });
 }
 
@@ -433,7 +441,7 @@ function renderPhases(clientProjectsData, thisProjectPosition)
     $("#confirm-delete-phase").off();   
     $("#confirm-delete-phase").click(function(){
         console.log("-Delete ´phase");
-        let deletephaseroute = baseurl+"app/phases/delete/"+actualProjectId;
+        let deletephaseroute = baseurl+"app/delete/phase/"+actualProjectId;
 
         callAJAX(deletephaseroute, "complete", "deletephase");
         redrawphase();
@@ -463,7 +471,12 @@ function renderPhases(clientProjectsData, thisProjectPosition)
         thisPositionPhase = $(this).attr("data-phase-position");
         actualPhaseForRenderCards = thisProject.phases[thisPositionPhase];
         updatecards(actualPhaseForRenderCards);
+        activePhaseId = $(".activePhase").attr("data-phase-id");
+        console.log("Active phase " + activePhaseId);
     });
+
+    activePhaseId = $(".activePhase").attr("data-phase-id");
+    console.log("Active phase " + activePhaseId);
 
 }
 
@@ -484,6 +497,7 @@ function eventsForCards()
         title = $(this).find("a.titleCard").text();
         description = $(this).find("p.descriptionCard").text();
         cardroute = baseurl+"app/task/"+cardId+"/comments";
+        activeCard = $(this);
         
         // Ajax para ver comentarios
         callAJAX(cardroute, "complete", "cards");
@@ -526,7 +540,7 @@ function eventsForCards()
             console.log( "- Inicio confirmation listener: CREATE" );
             console.log(userID);
 
-            var newTaskRoute = baseurl+ 'app/tasks/create/'+title+'/'+description+'/'+projectId+'/'+phaseId+'/'+status+'/'+order;
+            var newTaskRoute = baseurl+ 'app/tasks/create/'+title+'/'+description+'/'+projectId+'/'+activePhaseId+'/'+status+'/'+order;
             console.log(newTaskRoute);
             
             callAJAX(newTaskRoute, "complete", "newTask");
@@ -570,6 +584,49 @@ function renderCards(consulta)
         }
     });
 
+
+    confirmateHideButton = $("#confirm-hide-task");
+    confirmateHideButton.off();
+    confirmateHideButton.click(function()
+    {
+        cardId = $("#thisTaskId").val();
+        console.log("Hide click");
+        var newStatus = 4;
+                var changeStatusRoute = baseurl+"tasks/"+cardId+"/changestatus/"+newStatus;
+                var changeStatus =  $.get(changeStatusRoute, function(res)
+                {
+                    console.log("cambiado a Oculto");
+                    activeCard.remove();
+
+                    //$("#hiddenCards").text("Ver tareas ocultas");
+                    //$("#hiddenCards").attr("href", baseurl+"/mis-proyectos/"+projectId+"/phase/"+phaseId+"/tareas-ocultas");
+                });
+
+            });
+
+
+    //Confirmar borrado de tarjeta
+            confirmateDeleteButton = $("#confirm-delete-task");
+            confirmateDeleteButton.off();
+            confirmateDeleteButton.click(function()
+            {
+                console.log("- Confirmate delete");
+                $.ajax(
+                {
+                    url: baseurl+"tasksmanager/deletesimpletask/"+cardId,
+                    headers: {'X-CSRF-TOKEN': token},
+                    type: 'GET',
+                    dataType: 'json',
+                    
+
+                    success: function(data)
+                    {
+                        console.log("destroyed");
+                        activeCard.remove();
+                    }
+                });
+            });
+
     // por ahora vamos a hacer una llamada ajax par ver comentarios
     // fijarse luego sin conex, localstorage.
 
@@ -587,8 +644,8 @@ function renderComments(consulta){
         //console.log("- Solo appendeo porque es un nuevo coment de la misma fase..");
         let userCommentId = consulta.user_id;
         let hardDate  = consulta.created_at;
-        let splittedDate = hardDate.split(" ");
-        console.log(splittedDate);
+        //let splittedDate = hardDate.split(" ");
+        //console.log(splittedDate);
         let commentDate = consulta.created_at;
         let commentTime = consulta.created_at;
         commentsContainer = $("#cardComments");
