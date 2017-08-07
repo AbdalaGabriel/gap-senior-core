@@ -1,5 +1,6 @@
-
 baseurl = "http://gabrielabdala.com/";
+//baseurl = "http://localhost:8000/";
+var userID = "";
 var userID = "";
 var userName = "";
 var userType = "";
@@ -16,6 +17,7 @@ var newComentForAppended = false;
 var actualProjectId = 0;
 var consultedDataProject = false;
 var token = $("#token").val();
+var phasesOpen = false;
 
 //test2@test.com
 //baseurl = "http://gabdala.ferozo.com/clean/public/";
@@ -148,8 +150,17 @@ function uifunctions()
         //console.log("init-click-function");
         // Evitar propagacion para que los elementos del interior no disparen el evento mas de una vez
         ev.stopPropagation();
-        hiddenMenuPhases.addClass("showmenu");
-        hiddenMenuPhases.removeClass("hidemenu");
+        
+        if(phasesOpen){
+            hiddenMenuPhases.removeClass("showmenu");
+            hiddenMenuPhases.addClass("hidemenu");
+            phasesOpen = false;
+        }else{
+           hiddenMenuPhases.addClass("showmenu");
+           hiddenMenuPhases.removeClass("hidemenu");
+           phasesOpen = true; 
+        }
+        
        
     });
 
@@ -416,6 +427,16 @@ function renderPhases(clientProjectsData, thisProjectPosition)
         }else{  
             console.log("- debe completar los campos")
         }
+    });
+
+
+    $("#confirm-delete-phase").off();   
+    $("#confirm-delete-phase").click(function(){
+        console.log("-Delete ´phase");
+        let deletephaseroute = baseurl+"app/phases/delete/"+actualProjectId;
+
+        callAJAX(deletephaseroute, "complete", "deletephase");
+        redrawphase();
     });
 
     function redrawphase(){

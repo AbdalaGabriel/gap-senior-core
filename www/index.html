@@ -108,7 +108,32 @@
 		</div>
 	</div>
 
+	
 
+	<!--  Eliminar Fase !-->
+	<div class="modal fade" id="deletePhase" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Eliminar grupo de tareas</h4>
+				</div>
+
+				<div class="modal-body">
+						<p class="question">¿Esta seguro que desea borrar este grupo y todas sus tareas correspondientes?</p>
+
+				</div>
+
+				<div class="modal-footer">
+					<button data-dismiss="modal" id="confirm-delete-phase" class="btn btn-primary " >Borrar</button>
+
+					<button data-dismiss="modal" id="" class="btn btn-primary " >Cancelar</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
 
 	
 
@@ -295,12 +320,8 @@
 		<div class="grouptasks-container">
 
 			<h2>Fases de su proyecto</h2>
-
-			<span class=" span-button close-phases">
-				c
-
-			</span>
-
+			
+			<a href="#" class="deletePhase" data-toggle="modal" data-target="#deletePhase">D</a>
 
 			<a id="new-phase" data-toggle="modal" data-target="#createPhase" href="#" class="new-group-task addbutton">+</a>
 

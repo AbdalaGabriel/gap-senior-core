@@ -69,6 +69,10 @@ function callAJAX(requesturl, ajaxmethod, callbackFunction)
                     console.log("success");
                     break;
 
+                    case "deletephase":
+                     console.log("success");
+                    break;
+
                     case "newprojects":
                     console.log( "Exito en carga Ajax" );
                     $("#proyectos").append('<div class="projectContainer" data-position="0" data-project-id="'+res["id"]+'">'+title+'</div></div>');

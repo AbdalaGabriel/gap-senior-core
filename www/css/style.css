@@ -1158,3 +1158,18 @@ div[data-role="main"]{
     max-width: 100% !important;
   text-align: center;
 }
+
+.deletePhase{
+    float: left;
+    background: #646267;
+    color: white !important;
+    padding: 0 16px;
+    margin: 10px;
+    font-size: 32px;
+    line-height: 45px;
+    position: absolute;
+    border-radius: 3em;
+    z-index: 1;
+    bottom: 2.5em;
+    left: .5em;
+}
