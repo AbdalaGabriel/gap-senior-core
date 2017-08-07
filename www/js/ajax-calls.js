@@ -29,6 +29,10 @@ function callAJAX(requesturl, ajaxmethod, callbackFunction)
                 case "resources":
                 renderResources(consulta);
                 break;
+
+                case "deletephase":
+                     console.log("success");
+                    break;
             }           
         })
 
@@ -69,9 +73,7 @@ function callAJAX(requesturl, ajaxmethod, callbackFunction)
                     console.log("success");
                     break;
 
-                    case "deletephase":
-                     console.log("success");
-                    break;
+                    
 
                     case "newprojects":
                     console.log( "Exito en carga Ajax" );
