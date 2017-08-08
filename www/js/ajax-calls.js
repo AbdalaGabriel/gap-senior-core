@@ -31,8 +31,14 @@ function callAJAX(requesturl, ajaxmethod, callbackFunction)
                 break;
 
                 case "deletephase":
-                     console.log("success");
-                    break;
+                console.log("success");
+                break;
+
+                case "deleteproject":
+                console.log("success");
+                break;
+
+                
             }           
         })
 
@@ -82,7 +88,9 @@ function callAJAX(requesturl, ajaxmethod, callbackFunction)
 
                     case "newTask":
                     console.log( "Exito en carga Ajax" );
-                    $("#todo-column").append('<div class="task-container" data-array-position="0" data-from-phase="'+consulta["phase_id"]+'" data-task-order="'+consulta["order"]+'" data-task-status="'+consulta["status"]+'" data-task-id="'+consulta["id"]+'"><span data-status="4" data-id="'+consulta["id"]+'" class="hidecard">O</span><a class="titleCard" href="#" tabindex="0">'+consulta["title"]+'</a><p class="descriptionCard">'+consulta["description"]+'</p></div>');
+                    $("#todo-column").append('<div class="task-container" data-array-position="0" data-from-phase="'+consulta["phase_id"]+'" data-task-order="'+consulta["task_order"]+'" data-task-status="'+consulta["status"]+'" data-task-id="'+consulta["id"]+'"><span data-status="4" data-id="'+consulta["id"]+'" class="hidecard">O</span><a class="titleCard" href="#" tabindex="0">'+consulta["title"]+'</a><p class="descriptionCard">'+consulta["description"]+'</p></div>');
+                    eventsForCards();
+                    $('.columns-container').slick('slickGoTo', 0);
                     break;
                 }                 
                                     

@@ -72,6 +72,38 @@ a{
   left: 0;
 }
 
+.project-description{
+    color: white;
+    margin: 2em 0 0 0;
+}
+
+.deleteProject{
+    float: left;
+    background: #0e3cc1;
+    color: white !important;
+    padding: 0 16px;
+    margin: 10px;
+    font-size: 32px;
+    line-height: 45px;
+    position: absolute;
+    border-radius: 3em;
+    z-index: 1;
+    bottom: 2.5em;
+    left: .5em;
+}
+
+.project-detail-container{
+      padding: 1em;
+    background: rgb(31, 31, 31);
+    color: #ffffff;
+    overflow: hidden;
+    position: absolute;
+    width: calc(100% - 2em);
+    z-index: 0;
+    opacity: 0;
+    height: 0;
+    text-shadow: none !important;
+}
 
 .infobox 
 {

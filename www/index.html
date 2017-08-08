@@ -107,8 +107,31 @@
 			</div>
 		</div>
 	</div>
-
 	
+	<!--  Eliminar Project !-->
+	<div class="modal fade" id="deleteProject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Eliminar proyecto</h4>
+				</div>
+
+				<div class="modal-body">
+						<p class="question">¿Esta seguro que desea borrar este proyecto y todas sus fases y tareas correspondientes?</p>
+
+				</div>
+
+				<div class="modal-footer">
+					<button data-dismiss="modal" id="confirm-delete-project" class="btn btn-primary " >Borrar</button>
+
+					<button data-dismiss="modal" id="" class="btn btn-primary " >Cancelar</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
 
 	<!--  Eliminar Fase !-->
 	<div class="modal fade" id="deletePhase" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -345,6 +368,15 @@
 		<div data-role="header" class="none">
 		<a href="#home" class="backbutton-wp"><img src="img/back-02.svg" alt=""></a>
 			<h1 id="tituloProject"></h1>
+			<span class=" span-button show-project-info">
+					<img src="img/view-phase-02.svg" alt="">
+			</span>
+		</div>
+
+		<div class="project-detail-container">
+						
+			<a href="#" class="deleteProject" data-toggle="modal" data-target="#deleteProject">D</a>
+			<div class="project-description"></div>
 		</div>
 		
 		<div class="header-tasks-container ">

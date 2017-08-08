@@ -18,8 +18,12 @@ var actualProjectId = 0;
 var consultedDataProject = false;
 var token = $("#token").val();
 var phasesOpen = false;
+var projectInfoOpen = false;
 var activePhaseId = 0;
 var activeCard = 0;
+var workingProject;
+var actualPhaseForRenderCards;
+
 //test2@test.com
 //baseurl = "http://gabdala.ferozo.com/clean/public/";
 
@@ -143,8 +147,10 @@ function uifunctions()
 {
     console.log("init-others-function");
     var showphases = $(".show-phases");
-    var closephases = $(".close-phases");
     var hiddenMenuPhases = $(".grouptasks-container");
+
+    var showProjectInfo = $(".show-project-info");
+    var hiddenProjectinfo = $(".project-detail-container");
 
     showphases.click(function(ev)
     {
@@ -165,15 +171,27 @@ function uifunctions()
        
     });
 
-    closephases.click(function(ev)
+
+    showProjectInfo.click(function(ev)
     {
         //console.log("init-click-function");
         // Evitar propagacion para que los elementos del interior no disparen el evento mas de una vez
         ev.stopPropagation();
-        hiddenMenuPhases.addClass("hidemenu");
-        hiddenMenuPhases.removeClass("showmenu");
-
+        
+        if(projectInfoOpen){
+            hiddenProjectinfo.removeClass("showmenu");
+            hiddenProjectinfo.addClass("hidemenu");
+            projectInfoOpen = false;
+        }else{
+           hiddenProjectinfo.addClass("showmenu");
+           hiddenProjectinfo.removeClass("hidemenu");
+           projectInfoOpen = true; 
+        }
+        
+       
     });
+
+
 }
 
 
@@ -368,7 +386,11 @@ function renderProjects(consulta)
         //console.log("- Posicion extraida: "+ thisProjectPosition);
         renderPhases(clientProjectsData, thisProjectPosition);
         console.log(actualProjectId);
+        workingProject = $(this);
     });
+
+
+   
 }
 
 // Crear nuevo proyecto
@@ -403,9 +425,24 @@ function renderPhases(clientProjectsData, thisProjectPosition)
     console.log("- Render de fases");
     console.log(thisProjectPosition);
 
+    // Delete project
+    $("#confirm-delete-project").off();   
+    $("#confirm-delete-project").click(function(){
+        console.log("-Deleteproject");
+        workingProject.remove();
+        $( ":mobile-pagecontainer" ).pagecontainer( "change", "#home");
+
+        let deleteprojectroute = baseurl+"app/delete/clientproject/"+actualProjectId;
+
+        callAJAX(deleteprojectroute, "complete", "deleteproject");
+    });
+
+
     var thisProject = clientProjectsData[thisProjectPosition];
     console.log(thisProject);
     $("#tituloProject").text(thisProject.title);
+    $(".project-description").text(thisProject.description);
+
     $( ":mobile-pagecontainer" ).pagecontainer( "change", "#projectDetail");
     
     var projectPhases = thisProject.phases;
@@ -438,15 +475,7 @@ function renderPhases(clientProjectsData, thisProjectPosition)
     });
 
 
-    $("#confirm-delete-phase").off();   
-    $("#confirm-delete-phase").click(function(){
-        console.log("-Delete ´phase");
-        let deletephaseroute = baseurl+"app/delete/phase/"+actualProjectId;
-
-        callAJAX(deletephaseroute, "complete", "deletephase");
-        redrawphase();
-    });
-
+   
     function redrawphase(){
         console.log("- redibujar fasees");
 
@@ -458,11 +487,11 @@ function renderPhases(clientProjectsData, thisProjectPosition)
     $("#phaseId").val(firstPhase.id);
 
     // Mi funcion de updateo de tarjetas, recibe la fase activa, con lo cual le envio la primera fase como fase activa.
-    updatecards(firstPhase);
-
+    actualPhaseForRenderCards = firstPhase;
+     updatecards(actualPhaseForRenderCards);
 
     // Click en phase;
-     $(".phaseContainer").off();
+    $(".phaseContainer").off();
     $(".phaseContainer").click(function()
     {
         console.log("- Click on phase");
@@ -478,13 +507,23 @@ function renderPhases(clientProjectsData, thisProjectPosition)
     activePhaseId = $(".activePhase").attr("data-phase-id");
     console.log("Active phase " + activePhaseId);
 
+    $("#confirm-delete-phase").off();   
+    $("#confirm-delete-phase").click(function(){
+        console.log("-Delete ´phase");
+        let deletephaseroute = baseurl+"app/delete/phase/"+activePhaseId;
+
+        callAJAX(deletephaseroute, "complete", "deletephase");
+        redrawphase();
+    });
+
+
 }
 
 // Eventos de tarjetas.
 // -----------------------------------------------------------------------
 function eventsForCards()
 {
-    //console.log("- Eventos para tarjetas.");
+    console.log("- Eventos para tarjetas.");
     $(".task-container").off();
     $(".task-container").click(function()
     {
@@ -518,14 +557,14 @@ function eventsForCards()
      }, 500);
     }
 
+    $("#new-task").off();
     $("#new-task").click(function()
     {
-        $("#new-task").off()
+        
         console.log( "- Inicio click listener: CREATE" );
 
         $("#confirm-create-task").click(function()
         {
-            $("#confirm-create-task").off();
             let title = $("#task-title").val();
             let urlf = $("#urlf").val();
             let description = $("#task-content").val();
@@ -561,13 +600,14 @@ function eventsForCards()
 function renderCards(consulta)
 {
     console.log("- Mostrando detalle de tarjeta");
+    // por ahora vamos a hacer una llamada ajax par ver comentarios
+    // fijarse luego sin conex, localstorage.
     renderComments(consulta);
 
     $( ":mobile-pagecontainer" ).pagecontainer( "change", "#card");
     
     // Saco evento asi no se lo appendea cada vez que entra a la tarjeta y manda multiple cosltas.
     $("#sendComment").off();
-    
     $("#sendComment").click(function()
     {
         //console.log("Click en enviar comentario");
@@ -584,7 +624,12 @@ function renderCards(consulta)
         }
     });
 
+    //Status para volver a pantalla anterior.
+    let activeCardStatus = activeCard.attr("data-task-status");
+    let finalStatus = activeCardStatus - 1;
+    console.log("Final estatus" + finalStatus);
 
+    //Confirmar ocultamiento de tarjeta
     confirmateHideButton = $("#confirm-hide-task");
     confirmateHideButton.off();
     confirmateHideButton.click(function()
@@ -592,44 +637,45 @@ function renderCards(consulta)
         cardId = $("#thisTaskId").val();
         console.log("Hide click");
         var newStatus = 4;
-                var changeStatusRoute = baseurl+"tasks/"+cardId+"/changestatus/"+newStatus;
-                var changeStatus =  $.get(changeStatusRoute, function(res)
-                {
-                    console.log("cambiado a Oculto");
-                    activeCard.remove();
+        var changeStatusRoute = baseurl+"tasks/"+cardId+"/changestatus/"+newStatus;
+        var changeStatus =  $.get(changeStatusRoute, function(res)
+        {
+            console.log("cambiado a Oculto");
+            activeCard.remove();
+            $('.columns-container').slick('slickGoTo', finalStatus);
+            updatecards(actualPhaseForRenderCards); 
+            $( ":mobile-pagecontainer" ).pagecontainer( "change", "#projectDetail");
 
-                    //$("#hiddenCards").text("Ver tareas ocultas");
-                    //$("#hiddenCards").attr("href", baseurl+"/mis-proyectos/"+projectId+"/phase/"+phaseId+"/tareas-ocultas");
-                });
-
-            });
+            //$("#hiddenCards").text("Ver tareas ocultas");
+            //$("#hiddenCards").attr("href", baseurl+"/mis-proyectos/"+projectId+"/phase/"+phaseId+"/tareas-ocultas");
+        });
+    });
 
 
     //Confirmar borrado de tarjeta
-            confirmateDeleteButton = $("#confirm-delete-task");
-            confirmateDeleteButton.off();
-            confirmateDeleteButton.click(function()
-            {
-                console.log("- Confirmate delete");
-                $.ajax(
-                {
-                    url: baseurl+"tasksmanager/deletesimpletask/"+cardId,
-                    headers: {'X-CSRF-TOKEN': token},
-                    type: 'GET',
-                    dataType: 'json',
+    confirmateDeleteButton = $("#confirm-delete-task");
+    confirmateDeleteButton.off();
+    confirmateDeleteButton.click(function()
+    {
+        console.log("- Confirmate delete");
+        $.ajax(
+        {
+            url: baseurl+"tasksmanager/deletesimpletask/"+cardId,
+            headers: {'X-CSRF-TOKEN': token},
+            type: 'GET',
+            dataType: 'json',
                     
 
-                    success: function(data)
-                    {
-                        console.log("destroyed");
-                        activeCard.remove();
-                    }
-                });
-            });
-
-    // por ahora vamos a hacer una llamada ajax par ver comentarios
-    // fijarse luego sin conex, localstorage.
-
+            success: function(data)
+            {
+                console.log("destroyed");
+                activeCard.remove();
+                $('.columns-container').slick('slickGoTo', finalStatus);
+                updatecards(actualPhaseForRenderCards); 
+                $( ":mobile-pagecontainer" ).pagecontainer( "change", "#projectDetail");
+            }
+        });
+    });
 }
 
 // Funcion render de comentarios
@@ -700,10 +746,11 @@ function cleancolumns()
     done.empty();
 }
 
+
 function updatecards(activephase)
 {
     console.log( "- Iniciar la carga de tareas" );
- $('.loading').show();
+    $('.loading').show();
     // Limpieza de listeners y contenedores de elementos.
     cleancolumns();
     ////console.log( "- Limpieza" );
@@ -793,9 +840,6 @@ function updatecards(activephase)
         }
         
     });
-
-
-
     
   //  mannageDragAndDrop();
 }
